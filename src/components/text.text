@@ -1,0 +1,21 @@
+├── ui/                    # Універсальні, атомарні компоненти
+│   ├── BaseButton.vue
+│   ├── BaseInput.vue
+│   └── Modal.vue
+│
+├── layout/                # Компоненти макету (шапка, футер, сайдбар)
+│   ├── AppHeader.vue
+│   ├── AppFooter.vue
+│   └── Sidebar.vue
+│
+├── widgets/               # Складні блоки, як віджети
+│   ├── UserCard.vue
+│   └── PostList.vue
+│
+├── forms/                 # Компоненти для форм
+│   ├── LoginForm.vue
+│   └── ContactForm.vue
+│
+└── common/                # Інші повторно використовувані компоненти
+    ├── LoadingSpinner.vue
+    └── ErrorMessage.vue
