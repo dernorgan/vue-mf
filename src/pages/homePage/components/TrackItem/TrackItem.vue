@@ -113,7 +113,7 @@ const toggleAudio = () => {
 
 const copyText = async (value) => {
 	try {
-		await navigator.clipboard.writeText(value)
+		await navigator.clipboard.writeText(window.location.origin + value)
 	} catch (err) {
 		console.error('Помилка копіювання:', err)
 	}

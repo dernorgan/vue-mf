@@ -59,10 +59,11 @@ onMounted(async () => {
 	})
 
 	tracks.value = Object.entries(modules).map(([path, url]) => {
+		const newUrl = url.split('/src')
 		const name = path.split('/').pop().replace('.mp3', '')
 		return {
 			name,
-			url,
+			url: newUrl,
 			id: crypto.randomUUID(),
 		}
 	})
