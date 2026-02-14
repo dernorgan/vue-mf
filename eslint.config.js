@@ -51,7 +51,10 @@ export default defineConfig([
 				},
 			],
 			// Форматування об’єктів через ESLint:
-			'object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
+			'object-property-newline': [
+				'error',
+				{ allowAllPropertiesOnSameLine: false },
+			],
 			'object-curly-newline': [
 				'error',
 				{

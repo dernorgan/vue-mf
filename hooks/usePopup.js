@@ -1,6 +1,6 @@
 // composables/usePopup.js
-import {markRaw, ref} from 'vue'
-import {disableHtmlScroll, enableHtmlScroll} from '@utils/stopScroll.js'
+import { markRaw, ref } from 'vue'
+import { disableHtmlScroll, enableHtmlScroll } from '@utils/stopScroll.js'
 
 /**
  * popups — ref масив. В шаблонах Vue авто-розгортає ref, тож v-for="p in popups" працює.

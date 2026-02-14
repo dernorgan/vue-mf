@@ -8,5 +8,6 @@
 	"trailingComma": "all",
 	"vueIndentScriptAndStyle": false,
 	"htmlWhitespaceSensitivity": "ignore",
-	"useTabs": true
+	"useTabs": true,
+	"endOfLine": "lf"
 }

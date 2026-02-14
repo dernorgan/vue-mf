@@ -3,7 +3,6 @@
 		<button @click="showPopup">TESt</button>
 
 		<h1>🎵 Моя музика</h1>
-		{{ tracks }}
 		<div
 			v-if="tracks?.length"
 			class="flex flex-col gap-8"
@@ -54,8 +53,18 @@ onMounted(async () => {
 	// } catch (err) {
 	// 	console.error('❌ Помилка завантаження треків:', err)
 	// }
-	const modules = import.meta.glob('@/assets/music/*.mp3', { eager: true })
+	const modules = import.meta.glob('@/assets/music/*.mp3', {
+		eager: true,
+		import: 'default',
+	})
 
-	tracks.value = Object.keys(modules).map((path) => path.split('/').pop())
+	tracks.value = Object.entries(modules).map(([path, url]) => {
+		const name = path.split('/').pop().replace('.mp3', '')
+		return {
+			name,
+			url,
+			id: crypto.randomUUID(),
+		}
+	})
 })
 </script>

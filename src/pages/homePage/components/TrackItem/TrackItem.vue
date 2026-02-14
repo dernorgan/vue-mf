@@ -2,14 +2,14 @@
 	<div class="flex items-start gap-4">
 		<AdvancedImage
 			:src="data?.picture ? data?.picture : '/default.jpg'"
-			:alt="data?.name"
+			:alt="data?.track?.name"
 			width="600"
 			height="400"
 			:lazy="true"
 		/>
 		<div class="flex flex-col gap-2">
 			<div
-				v-if="data?.name"
+				v-if="data?.track?.name"
 				class="flex items-center gap-3"
 			>
 				<button @click="toggleAudio">
@@ -26,18 +26,19 @@
 					/>
 				</button>
 
-				<button @click="copyText(`${data?.url}`)">
+				<button @click="copyText(`${data?.track?.url}`)">
 					<SvgIcon
 						name="ic24_copy"
 						class="text-cyan-600"
 					/>
 				</button>
 				<div>
-					{{ data?.name }}
+					{{ data?.track?.name }}
 				</div>
 			</div>
 			<AudioVisualizer
-				:audio-src="`../../../../assets/music/${data?.track}`"
+				:audio-src="data?.track?.url"
+				:data="data"
 				:width="800"
 				:height="180"
 				:progress-height="15"
@@ -107,7 +108,7 @@ const stopTrackRef = ref(false)
 const toggleAudio = () => {
 	isPlayingRef.value = !isPlayingRef.value
 	stopTrackRef.value = false
-	emit('update:activeTrack', { id: props.data?.id })
+	emit('update:activeTrack', { id: props.data?.track?.id })
 }
 
 const copyText = async (value) => {
@@ -127,7 +128,7 @@ const barColor = (barHeight) => `rgb(0, ${barHeight + 50}, 200)`
 watch(
 	() => props.data?.activeTrack,
 	(newVal) => {
-		if (newVal !== props.data?.id) {
+		if (newVal !== props.data?.track?.id) {
 			isPlayingRef.value = false
 		}
 	},

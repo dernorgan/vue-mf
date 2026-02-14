@@ -10,9 +10,13 @@
 				@click="closePopup(popup.id)"
 			></div>
 
-			<div class="modal-inner relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+			<div
+				class="modal-inner relative bg-white rounded-lg shadow-sm dark:bg-gray-700"
+			>
 				<!-- Modal header -->
-				<div class="modal-header flex items-center justify-between gap-2 p-3 border-b rounded-t dark:border-gray-600 border-gray-200">
+				<div
+					class="modal-header flex items-center justify-between gap-2 p-3 border-b rounded-t dark:border-gray-600 border-gray-200"
+				>
 					<button
 						class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
 						data-modal-hide="default-modal"

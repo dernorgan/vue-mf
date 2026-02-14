@@ -2,7 +2,6 @@
 	<div>
 		<audio
 			ref="audioElement"
-			:src="audioSrc"
 			:loop="loop"
 			preload="metadata"
 			crossorigin="anonymous"
@@ -27,6 +26,10 @@ import { useDeviceStore } from '@stores/modules/device.js'
 
 const device = useDeviceStore()
 const props = defineProps({
+	data: {
+		type: Object,
+		required: true,
+	},
 	audioSrc: {
 		type: String,
 		required: true,
@@ -98,6 +101,9 @@ watch(
 
 onMounted(() => {
 	const audio = audioElement.value
+	if (!audio) return
+
+	audio.src = props.audioSrc
 
 	// Не створюйте AudioContext одразу!
 	const initAudio = () => {
@@ -115,19 +121,22 @@ onMounted(() => {
 	}
 
 	audio.addEventListener('play', async () => {
-		await audioContext.value.resume() // Обов'язково
+		await audioContext.value.resume()
 		emit('update:isPlaying', true)
 	})
 
 	audio.addEventListener('pause', () => emit('update:isPlaying', false))
 	audio.addEventListener('ended', () => {
-		resetAudio()
-		emit('update:isPlaying', false)
+		// resetAudio()
+		audioElement.value.play()
+		emit('update:isPlaying', true)
+		// emit('update:isPlaying', false)
 	})
 
 	// Наприклад, тут ініціалізуйте після кліку
 	document.addEventListener('click', initAudio, { once: true })
 })
+
 onUnmounted(() => {
 	if (audioContext.value) {
 		audioContext.value.close()
